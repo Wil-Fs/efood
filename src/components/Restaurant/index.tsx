@@ -20,7 +20,7 @@ const Restaurant = ({ title, image, infos, description, review }: Props) => (
 			))}
 		</Image>
 		<div>
-			<div>
+			<div className={'textContainer'}>
 				<Title>{title}</Title>
 				<Review>{review}</Review>
 			</div>

@@ -5,6 +5,11 @@ import { Props } from '.';
 export const Card = styled.div`
 	width: 100%;
 	max-width: 472px;
+
+	.textContainer {
+		display: flex;
+		justify-content: space-around;
+	}
 `;
 
 export const Image = styled.div<

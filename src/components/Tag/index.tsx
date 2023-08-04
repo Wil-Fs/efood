@@ -9,7 +9,7 @@ const Tag = ({ children, type }: Props) => {
 	if (type === 'button') {
 		return (
 			<>
-				<Button type="button" to={''}>
+				<Button type="button" to={``}>
 					{children}
 				</Button>
 				;
