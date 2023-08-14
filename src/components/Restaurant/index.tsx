@@ -1,6 +1,15 @@
 import Tag from '../Tag';
 
-import { Image, Card, Title, Review, Description } from './styles';
+import {
+	Image,
+	Card,
+	Title,
+	Review,
+	Description,
+	SecondContainer,
+} from './styles';
+
+import star from '../../assets/images/estrela.png';
 
 export type Props = {
 	title: string;
@@ -12,21 +21,27 @@ export type Props = {
 
 const Restaurant = ({ title, image, infos, description, review }: Props) => (
 	<Card>
-		<Image image={image}>
-			{infos.map((tag) => (
-				<Tag type="tag" key={tag}>
-					{infos}
+		<Image image={image} />
+		<div className="tagContainer">
+			{infos.map((tags) => (
+				<Tag type="tag" key={tags}>
+					{tags}
 				</Tag>
 			))}
-		</Image>
-		<div>
+		</div>
+		<SecondContainer>
 			<div className={'textContainer'}>
 				<Title>{title}</Title>
-				<Review>{review}</Review>
+				<Review>
+					{review}
+					<img className="star" src={star} />
+				</Review>
 			</div>
 			<Description>{description}</Description>
-		</div>
-		<Tag type="button">{['Saiba mais']}</Tag>
+			<Tag type="button" toLink={'/'}>
+				{'Saiba mais'}
+			</Tag>
+		</SecondContainer>
 	</Card>
 );
 

@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { Cores } from '../../styles';
 import { Link } from 'react-router-dom';
 
-export const Tag = styled.div`
+export const Tags = styled.div`
 	padding: 6px 4px;
 	background-color: ${Cores.fontColor};
 `;

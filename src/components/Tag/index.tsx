@@ -1,23 +1,18 @@
-import { Button } from './style';
+import { Button, Tags } from './style';
 
-type Props = {
-	children: string[];
+export type Props = {
+	children: string;
 	type: 'button' | 'tag';
+	toLink?: string;
 };
 
-const Tag = ({ children, type }: Props) => {
-	if (type === 'button') {
-		return (
-			<>
-				<Button type="button" to={``}>
-					{children}
-				</Button>
-				;
-			</>
-		);
-	}
-
-	return <Tag type="tag">{children}</Tag>;
-};
+const Tag = ({ children, type, toLink }: Props) =>
+	type === 'button' ? (
+		<Button type="button" to={`${toLink}`}>
+			{children}
+		</Button>
+	) : (
+		<Tags>{children}</Tags>
+	);
 
 export default Tag;
