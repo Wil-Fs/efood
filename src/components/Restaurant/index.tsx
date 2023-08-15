@@ -17,9 +17,17 @@ export type Props = {
 	image: string;
 	infos: string[];
 	description: string;
+	to: string;
 };
 
-const Restaurant = ({ title, image, infos, description, review }: Props) => (
+const Restaurant = ({
+	title,
+	image,
+	infos,
+	description,
+	review,
+	to,
+}: Props) => (
 	<Card>
 		<Image image={image} />
 		<div className="tagContainer">
@@ -38,7 +46,7 @@ const Restaurant = ({ title, image, infos, description, review }: Props) => (
 				</Review>
 			</div>
 			<Description>{description}</Description>
-			<Tag type="button" toLink={'/'}>
+			<Tag type="button" toLink={to}>
 				{'Saiba mais'}
 			</Tag>
 		</SecondContainer>

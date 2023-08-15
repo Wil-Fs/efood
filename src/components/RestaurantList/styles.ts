@@ -8,4 +8,5 @@ export const RestaurantContainer = styled.ul`
 	padding-top: 80px;
 	padding-bottom: 120px;
 	background-color: ${Cores.bgColor};
+	padding-bottom: 120px;
 `;
