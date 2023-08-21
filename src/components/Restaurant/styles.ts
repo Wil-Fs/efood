@@ -40,14 +40,14 @@ export const SecondContainer = styled.div`
 	}
 `;
 
-export const Image = styled.img<
+export const Image = styled.div<
 	Omit<Props, 'title' | 'infos' | 'description' | 'review' | 'to'>
 >`
 	width: 100%;
 	height: 217px;
 	background-image: url(${(props) => props.image});
 	background-repeat: no-repeat;
-	background-size: contain;
+
 	border-bottom: 1px solid ${Cores.fontColor};
 `;
 
