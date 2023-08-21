@@ -29,7 +29,7 @@ const Restaurant = ({
 	to,
 }: Props) => (
 	<Card>
-		<Image image={image} />
+		<Image src={image} />
 		<div className="tagContainer">
 			{infos.map((tags) => (
 				<Tag type="tag" key={tags}>

@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 
-import { Props } from '.';
 import { Cores } from '../../styles';
 import { Button, Tags } from '../Tag/style';
 
@@ -39,13 +38,9 @@ export const SecondContainer = styled.div`
 	}
 `;
 
-export const Image = styled.div<
-	Omit<Props, 'title' | 'infos' | 'description' | 'review' | 'to'>
->`
+export const Image = styled.img`
 	width: 100%;
 	height: 217px;
-	background-image: url(${(props) => props.image});
-	background-repeat: no-repeat;
 `;
 
 export const Title = styled.h3`
