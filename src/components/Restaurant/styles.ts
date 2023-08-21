@@ -28,7 +28,6 @@ export const Card = styled.li`
 `;
 
 export const SecondContainer = styled.div`
-	margin-top: -4px;
 	padding-bottom: 10px;
 	border: 1px solid ${Cores.fontColor};
 	border-top: none;
@@ -47,8 +46,6 @@ export const Image = styled.div<
 	height: 217px;
 	background-image: url(${(props) => props.image});
 	background-repeat: no-repeat;
-
-	border-bottom: 1px solid ${Cores.fontColor};
 `;
 
 export const Title = styled.h3`
