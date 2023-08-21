@@ -27,6 +27,7 @@ export const Card = styled.li`
 `;
 
 export const SecondContainer = styled.div`
+	margin-top: -4px;
 	padding-bottom: 10px;
 	border: 1px solid ${Cores.fontColor};
 	border-top: none;
