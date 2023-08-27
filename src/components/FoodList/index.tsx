@@ -5,15 +5,17 @@ import FoodClass from '../../models/Food/FoodClass';
 
 type Props = {
 	foods: FoodClass[];
+	onClick: () => void;
 };
 
-const FoodList = ({ foods }: Props) => (
+const FoodList = ({ foods, onClick }: Props) => (
 	<S.Background>
 		<div className="Container">
 			<S.FoodList>
 				{foods.map(
 					({ id, image, title, description, toDescription }) => (
 						<Food
+							onClick={() => onClick()}
 							key={id}
 							image={image}
 							title={title}
