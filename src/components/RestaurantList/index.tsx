@@ -1,11 +1,11 @@
-import RestaurantClass from '../../models/Restaurant/RestaurantClass';
+import { Restaurante } from '../../pages/Home';
 import Footer from '../Footer';
 import Hero from '../Hero';
 import Restaurant from '../Restaurant';
 import { RestaurantContainer } from './styles';
 
-export type Props = {
-	restaurants: RestaurantClass[];
+type Props = {
+	restaurants: Restaurante[];
 };
 
 const RestaurantList = ({ restaurants }: Props) => (
@@ -13,16 +13,25 @@ const RestaurantList = ({ restaurants }: Props) => (
 		<Hero />
 		<div className={'Container'}>
 			<RestaurantContainer>
-				{restaurants?.map(
-					({ id, image, description, infos, review, title, to }) => (
+				{restaurants.map(
+					({
+						id,
+						titulo,
+						capa,
+						avaliacao,
+						descricao,
+						tipo,
+						destacado,
+					}) => (
 						<Restaurant
 							key={id}
-							image={image}
-							description={description}
-							infos={infos}
-							review={review}
-							title={title}
-							to={to}
+							image={capa}
+							description={descricao}
+							review={avaliacao}
+							title={titulo}
+							infos={tipo}
+							to={`/restaurant/${id}`}
+							destaque={destacado}
 						/>
 					)
 				)}

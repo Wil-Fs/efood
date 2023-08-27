@@ -1,25 +1,13 @@
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import { BrowserRouter } from 'react-router-dom';
+import Rotas from './Rotas';
 import { GlobalStyle } from './styles';
-import Home from './pages/Home';
-import RestaurantInfo from './pages/RestaurantInfo';
-
-const router = createBrowserRouter([
-	{
-		path: '/',
-		element: <Home />,
-	},
-	{
-		path: 'restaurant',
-		element: <RestaurantInfo />,
-	},
-]);
 
 function App() {
 	return (
-		<>
+		<BrowserRouter>
 			<GlobalStyle />
-			<RouterProvider router={router} />
-		</>
+			<Rotas />
+		</BrowserRouter>
 	);
 }
 

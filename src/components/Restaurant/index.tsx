@@ -15,9 +15,10 @@ export type Props = {
 	title: string;
 	review: number;
 	image: string;
-	infos: string[];
+	infos: string;
 	description: string;
 	to: string;
+	destaque: boolean;
 };
 
 const Restaurant = ({
@@ -27,15 +28,18 @@ const Restaurant = ({
 	description,
 	review,
 	to,
+	destaque,
 }: Props) => (
 	<Card>
 		<Image src={image} />
 		<div className="tagContainer">
-			{infos.map((tags) => (
-				<Tag type="tag" key={tags}>
-					{tags}
-				</Tag>
-			))}
+			{destaque && (
+				<>
+					<Tag type="tag">{'Destaque da Semana'}</Tag>
+				</>
+			)}
+
+			<Tag type="tag">{infos}</Tag>
 		</div>
 		<SecondContainer>
 			<div className={'textContainer'}>

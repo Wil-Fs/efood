@@ -16,11 +16,7 @@ const Food = ({ image, title, description, toLink, onClick }: Props) => {
 			<S.DescriptionContainer>
 				<S.Title>{title}</S.Title>
 				<S.Description>{description}</S.Description>
-				<Tag
-					type="addCarrinho"
-					toLink={toLink}
-					onClick={() => onClick()}
-				>
+				<Tag type="addCart" toLink={toLink} onClick={() => onClick()}>
 					Adicionar ao carrinho
 				</Tag>
 			</S.DescriptionContainer>

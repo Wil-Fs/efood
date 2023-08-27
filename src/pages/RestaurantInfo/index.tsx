@@ -1,6 +1,5 @@
 import Banner from '../../components/Banner';
 import HeroInfos from '../../components/HeroInfos';
-import FoodClass from '../../models/Food/FoodClass';
 
 import iconClose from '../../assets/images/close.png';
 import pizza from '../../assets/images/pizza.png';
@@ -8,67 +7,28 @@ import FoodList from '../../components/FoodList';
 import Footer from '../../components/Footer';
 import { ModalContainer, ModalContent, OverLay } from './styles';
 import Tag from '../../components/Tag';
-import { useState } from 'react';
-
-const foods: FoodClass[] = [
-	{
-		id: 1,
-		image: pizza,
-		title: 'Pizza Marguerita',
-		description:
-			'Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt quaerat nisi cumque quod quis quia quam eveniet, voluptatem unde. Ratione esse cum explicabo quaerat quidem facilis deserunt eligendi itaque sequi.',
-		toDescription: '#',
-	},
-	{
-		id: 2,
-		image: pizza,
-		title: 'Pizza Marguerita',
-		description:
-			'Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt quaerat nisi cumque quod quis quia quam eveniet, voluptatem unde. Ratione esse cum explicabo quaerat quidem facilis deserunt eligendi itaque sequi.',
-		toDescription: '#',
-	},
-	{
-		id: 3,
-		image: pizza,
-		title: 'Pizza Marguerita',
-		description:
-			'Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt quaerat nisi cumque quod quis quia quam eveniet, voluptatem unde. Ratione esse cum explicabo quaerat quidem facilis deserunt eligendi itaque sequi.',
-		toDescription: '#',
-	},
-	{
-		id: 4,
-		image: pizza,
-		title: 'Pizza Marguerita',
-		description:
-			'Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt quaerat nisi cumque quod quis quia quam eveniet, voluptatem unde. Ratione esse cum explicabo quaerat quidem facilis deserunt eligendi itaque sequi.',
-		toDescription: '#',
-	},
-	{
-		id: 5,
-		image: pizza,
-		title: 'Pizza Marguerita',
-		description:
-			'Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt quaerat nisi cumque quod quis quia quam eveniet, voluptatem unde. Ratione esse cum explicabo quaerat quidem facilis deserunt eligendi itaque sequi.',
-		toDescription: '#',
-	},
-	{
-		id: 6,
-		image: pizza,
-		title: 'Pizza Marguerita',
-		description:
-			'Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt quaerat nisi cumque quod quis quia quam eveniet, voluptatem unde. Ratione esse cum explicabo quaerat quidem facilis deserunt eligendi itaque sequi.',
-		toDescription: '#',
-	},
-];
+import { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
+import { Restaurante } from '../Home';
 
 type GalleryState = {
 	isVisible: boolean;
 };
 
 const RestaurantInfo = () => {
+	const { id } = useParams();
+
+	const [restaurantInfo, setRestaurantInfo] = useState<Restaurante[]>([]);
+
 	const [modal, setModal] = useState<GalleryState>({
 		isVisible: false,
 	});
+
+	useEffect(() => {
+		fetch(`https://fake-api-tau.vercel.app/api/efood/restaurantes/${id}`)
+			.then((res) => res.json())
+			.then((res) => setRestaurantInfo(res));
+	}, []);
 
 	const openOrCloseModal = () =>
 		!modal.isVisible
@@ -81,7 +41,10 @@ const RestaurantInfo = () => {
 		<OverLay>
 			<HeroInfos toLinkHome="/" toLinkCar="carrinho" />
 			<Banner />
-			<FoodList onClick={() => openOrCloseModal()} foods={foods} />
+			<FoodList
+				onClick={() => openOrCloseModal()}
+				foods={restaurantInfo}
+			/>
 			<Footer />
 			<ModalContainer
 				onClick={() => openOrCloseModal()}
