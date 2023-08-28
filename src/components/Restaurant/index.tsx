@@ -35,11 +35,11 @@ const Restaurant = ({
 		<div className="tagContainer">
 			{destaque && (
 				<>
-					<Tag type="tag">{'Destaque da Semana'}</Tag>
+					<Tag type="tag">{['Destaque da Semana']}</Tag>
 				</>
 			)}
 
-			<Tag type="tag">{infos}</Tag>
+			<Tag type="tag">{[infos]}</Tag>
 		</div>
 		<SecondContainer>
 			<div className={'textContainer'}>
@@ -51,7 +51,7 @@ const Restaurant = ({
 			</div>
 			<Description>{description}</Description>
 			<Tag type="button" toLink={to}>
-				{'Saiba mais'}
+				{['Saiba mais']}
 			</Tag>
 		</SecondContainer>
 	</Card>

@@ -2,7 +2,7 @@ import Banner from '../../components/Banner';
 import HeroInfos from '../../components/HeroInfos';
 
 import iconClose from '../../assets/images/close.png';
-import pizza from '../../assets/images/pizza.png';
+
 import FoodList from '../../components/FoodList';
 import Footer from '../../components/Footer';
 import { ModalContainer, ModalContent, OverLay } from './styles';
@@ -27,8 +27,8 @@ const RestaurantInfo = () => {
 	useEffect(() => {
 		fetch(`https://fake-api-tau.vercel.app/api/efood/restaurantes/${id}`)
 			.then((res) => res.json())
-			.then((res) => setRestaurantInfo(res));
-	}, []);
+			.then((res) => setRestaurantInfo([res]));
+	}, [id]);
 
 	const openOrCloseModal = () =>
 		!modal.isVisible
@@ -40,50 +40,49 @@ const RestaurantInfo = () => {
 	return (
 		<OverLay>
 			<HeroInfos toLinkHome="/" toLinkCar="carrinho" />
-			<Banner />
-			<FoodList
-				onClick={() => openOrCloseModal()}
-				foods={restaurantInfo}
-			/>
+			{restaurantInfo.map((rest) => (
+				<Banner
+					key={rest.id}
+					banner={rest.capa}
+					type={rest.tipo}
+					title={rest.titulo}
+				/>
+			))}
+
+			<FoodList onClick={() => openOrCloseModal()} />
 			<Footer />
 			<ModalContainer
 				onClick={() => openOrCloseModal()}
 				className={!modal.isVisible ? '' : 'visible'}
 			>
 				<div className="modal Container">
-					<ModalContent>
-						<img src={pizza} alt="" />
-						<img
-							onClick={() => openOrCloseModal()}
-							className="btnClose"
-							src={iconClose}
-							alt=""
-						/>
-						<div className="textContainer">
-							<h3>Pizza Marguerita</h3>
-							<p>
-								A pizza Margherita é uma pizza clássica da
-								culinária italiana, reconhecida por sua
-								simplicidade e sabor inigualável. Ela é feita
-								com uma base de massa fina e crocante, coberta
-								com molho de tomate fresco, queijo mussarela de
-								alta qualidade, manjericão fresco e azeite de
-								oliva extra-virgem. A combinação de sabores é
-								perfeita, com o molho de tomate suculento e
-								ligeiramente ácido, o queijo derretido e cremoso
-								e as folhas de manjericão frescas, que adicionam
-								um toque de sabor herbáceo. É uma pizza simples,
-								mas deliciosa, que agrada a todos os paladares e
-								é uma ótima opção para qualquer ocasião.
-								<br />
-								<br />
-								<span>Serve: de 2 a 3 pessoas</span>
-							</p>
-							<Tag type="button">
-								Adicionar ao carrinho - R$ 60.90
-							</Tag>
-						</div>
-					</ModalContent>
+					{restaurantInfo.map(({ cardapio }) => (
+						<ModalContent key={cardapio[0 + 1].id}>
+							<img
+								src={cardapio[0 + 1].foto}
+								alt={cardapio[0 + 1].nome}
+							/>
+							<img
+								onClick={() => openOrCloseModal()}
+								className="btnClose"
+								src={iconClose}
+								alt=""
+							/>
+							<div className="textContainer">
+								<h3>{cardapio[0 + 1].nome}</h3>
+								<p>
+									{cardapio[0 + 1].descricao}
+									<br />
+									<br />
+									<span>Serve: {cardapio[0 + 1].porcao}</span>
+								</p>
+								<Tag type="button">
+									Adicionar ao carrinho - R${' '}
+									{`${cardapio[0 + 1].preco}`}
+								</Tag>
+							</div>
+						</ModalContent>
+					))}
 				</div>
 			</ModalContainer>
 		</OverLay>

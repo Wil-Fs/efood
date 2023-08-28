@@ -1,35 +1,36 @@
+import { useEffect, useState } from 'react';
 import Food from '../Food';
 import * as S from './styles';
-
 import { Restaurante } from '../../pages/Home';
-import { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
 
 type Props = {
-	foods: Restaurante[];
 	onClick: () => void;
 };
 
 const FoodList = ({ onClick }: Props) => {
-	const [cardapio, setCardapio] = useState<Restaurante[]>([]);
+	const { id } = useParams();
 
-	console.log(cardapio);
+	const [foods, setFoods] = useState<Restaurante[]>([]);
 
 	useEffect(() => {
-		fetch(`https://fake-api-tau.vercel.app/api/efood/restaurantes`)
+		fetch(`https://fake-api-tau.vercel.app/api/efood/restaurantes/${id}`)
 			.then((res) => res.json())
-			.then((res) => setCardapio(res));
-	}, []);
+			.then((res) => setFoods([res]));
+	}, [id]);
+
+	console.log(foods.map((food, index) => food.cardapio[index + 2].nome));
 
 	return (
 		<S.Background>
 			<div className="Container">
 				<S.FoodList>
-					{cardapio.map(({ cardapio }) => (
+					{foods.map(({ cardapio }, index) => (
 						<Food
-							key={cardapio.id}
-							description={cardapio.descricao}
-							image={cardapio.foto}
-							title={cardapio.nome}
+							key={cardapio[index].id}
+							description={cardapio[index].descricao}
+							image={cardapio[index].foto}
+							title={cardapio[index].nome}
 							toLink=""
 							onClick={() => onClick()}
 						/>

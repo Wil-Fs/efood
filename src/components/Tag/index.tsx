@@ -1,7 +1,7 @@
 import { Button, Tags } from './style';
 
 export type Props = {
-	children: string;
+	children: string[];
 	type: 'button' | 'tag' | 'addCart';
 	toLink?: string;
 	onClick?: () => void;

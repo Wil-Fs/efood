@@ -1,10 +1,8 @@
 import styled from 'styled-components';
 
-import bannerImg from '../../assets/images/espaguete.png';
 import { Cores } from '../../styles';
 
 export const Banner = styled.div`
-	background-image: url(${bannerImg});
 	background-size: cover;
 	background-repeat: no-repeat;
 `;
