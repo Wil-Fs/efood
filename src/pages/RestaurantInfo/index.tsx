@@ -37,6 +37,20 @@ const RestaurantInfo = () => {
 			  })
 			: setModal({ isVisible: false });
 
+	// const getCardapio = () => {
+	// 	const cardapio = [];
+
+	// 	for (let i = 0; i < restaurantInfo.length; i++) {
+	// 		for (let f = 0; f < restaurantInfo[i].cardapio.length; f++) {
+	// 			cardapio.push(restaurantInfo[i].cardapio[f]);
+	// 		}
+	// 	}
+
+	// 	return cardapio;
+	// };
+
+	//const food = getCardapio();
+
 	return (
 		<OverLay>
 			<HeroInfos toLinkHome="/" toLinkCar="carrinho" />
@@ -56,11 +70,11 @@ const RestaurantInfo = () => {
 				className={!modal.isVisible ? '' : 'visible'}
 			>
 				<div className="modal Container">
-					{restaurantInfo.map(({ cardapio }) => (
-						<ModalContent key={cardapio[0 + 1].id}>
+					{restaurantInfo.map(({ cardapio }, index) => (
+						<ModalContent key={cardapio[index].id}>
 							<img
-								src={cardapio[0 + 1].foto}
-								alt={cardapio[0 + 1].nome}
+								src={cardapio[index].foto}
+								alt={cardapio[index].nome}
 							/>
 							<img
 								onClick={() => openOrCloseModal()}
@@ -69,16 +83,16 @@ const RestaurantInfo = () => {
 								alt=""
 							/>
 							<div className="textContainer">
-								<h3>{cardapio[0 + 1].nome}</h3>
+								<h3>{cardapio[index].nome}</h3>
 								<p>
-									{cardapio[0 + 1].descricao}
+									{cardapio[index].descricao}
 									<br />
 									<br />
-									<span>Serve: {cardapio[0 + 1].porcao}</span>
+									<span>Serve: {cardapio[index].porcao}</span>
 								</p>
 								<Tag type="button">
 									Adicionar ao carrinho - R${' '}
-									{`${cardapio[0 + 1].preco}`}
+									{`${cardapio[index].preco}`}
 								</Tag>
 							</div>
 						</ModalContent>

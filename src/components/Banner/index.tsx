@@ -1,7 +1,7 @@
 import * as S from './styles';
 
 type Props = {
-	type: string;
+	type?: string;
 	title: string;
 	banner: string;
 };

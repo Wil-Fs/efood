@@ -19,20 +19,32 @@ const FoodList = ({ onClick }: Props) => {
 			.then((res) => setFoods([res]));
 	}, [id]);
 
-	console.log(foods.map((food, index) => food.cardapio[index + 2].nome));
+	const getCardapio = () => {
+		const cardapio = [];
+
+		for (let i = 0; i < foods.length; i++) {
+			for (let f = 0; f < foods[i].cardapio.length; f++) {
+				cardapio.push(foods[i].cardapio[f]);
+			}
+		}
+
+		return cardapio;
+	};
+
+	const food = getCardapio();
 
 	return (
 		<S.Background>
 			<div className="Container">
 				<S.FoodList>
-					{foods.map(({ cardapio }, index) => (
+					{food.map((f) => (
 						<Food
-							key={cardapio[index].id}
-							description={cardapio[index].descricao}
-							image={cardapio[index].foto}
-							title={cardapio[index].nome}
-							toLink=""
+							key={f.id}
+							title={f.nome}
+							image={f.foto}
+							description={f.descricao}
 							onClick={() => onClick()}
+							toLink=""
 						/>
 					))}
 				</S.FoodList>
