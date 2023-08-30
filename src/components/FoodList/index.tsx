@@ -39,8 +39,6 @@ const FoodList = ({ onClick }: Props) => {
 		porcao: '',
 	});
 
-	console.log(cardpioFil);
-
 	useEffect(() => {
 		fetch(`https://fake-api-tau.vercel.app/api/efood/restaurantes/${id}`)
 			.then((res) => res.json())
@@ -54,6 +52,12 @@ const FoodList = ({ onClick }: Props) => {
 			  })
 			: setModal({ isVisible: false });
 	}
+
+	const formatPrice = (price = 0) =>
+		new Intl.NumberFormat('pt-BR', {
+			style: 'currency',
+			currency: 'BRL',
+		}).format(price);
 
 	const getCardapio = () => {
 		const cardapio = [];
@@ -115,7 +119,7 @@ const FoodList = ({ onClick }: Props) => {
 									</p>
 									<Tag type="button">
 										Adicionar ao carrinho - R${' '}
-										{`${cardpioFil.preco}`}
+										{`${formatPrice(cardpioFil.preco)}`}
 									</Tag>
 								</div>
 							</ModalContent>

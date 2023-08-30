@@ -8,37 +8,39 @@ type Props = {
 	restaurants: Restaurante[];
 };
 
-const RestaurantList = ({ restaurants }: Props) => (
-	<>
-		<Hero />
-		<div className={'Container'}>
-			<RestaurantContainer>
-				{restaurants.map(
-					({
-						id,
-						titulo,
-						capa,
-						avaliacao,
-						descricao,
-						tipo,
-						destacado,
-					}) => (
-						<Restaurant
-							key={id}
-							image={capa}
-							description={descricao}
-							review={avaliacao}
-							title={titulo}
-							infos={tipo}
-							to={`/restaurant/${id}`}
-							destaque={destacado}
-						/>
-					)
-				)}
-			</RestaurantContainer>
-		</div>
-		<Footer />
-	</>
-);
+const RestaurantList = ({ restaurants }: Props) => {
+	return (
+		<>
+			<Hero />
+			<div className={'Container'}>
+				<RestaurantContainer>
+					{restaurants.map(
+						({
+							id,
+							titulo,
+							capa,
+							avaliacao,
+							descricao,
+							tipo,
+							destacado,
+						}) => (
+							<Restaurant
+								key={id}
+								image={capa}
+								description={descricao}
+								review={avaliacao}
+								title={titulo}
+								infos={tipo}
+								to={`/restaurant/${id}`}
+								destaque={destacado}
+							/>
+						)
+					)}
+				</RestaurantContainer>
+			</div>
+			<Footer />
+		</>
+	);
+};
 
 export default RestaurantList;

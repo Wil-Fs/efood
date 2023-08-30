@@ -29,32 +29,37 @@ const Restaurant = ({
 	review,
 	to,
 	destaque,
-}: Props) => (
-	<Card>
-		<Image src={image} />
-		<div className="tagContainer">
-			{destaque && (
-				<>
-					<Tag type="tag">{['Destaque da Semana']}</Tag>
-				</>
-			)}
+}: Props) => {
+	const getDescription = (description: string) =>
+		description.length > 234 && description.slice(0, 231) + '...';
 
-			<Tag type="tag">{[infos]}</Tag>
-		</div>
-		<SecondContainer>
-			<div className={'textContainer'}>
-				<Title>{title}</Title>
-				<Review>
-					{review}
-					<img className="star" src={star} />
-				</Review>
+	return (
+		<Card>
+			<Image src={image} />
+			<div className="tagContainer">
+				{destaque && (
+					<>
+						<Tag type="tag">{['Destaque da Semana']}</Tag>
+					</>
+				)}
+
+				<Tag type="tag">{[infos]}</Tag>
 			</div>
-			<Description>{description}</Description>
-			<Tag type="button" toLink={to}>
-				{['Saiba mais']}
-			</Tag>
-		</SecondContainer>
-	</Card>
-);
+			<SecondContainer>
+				<div className={'textContainer'}>
+					<Title>{title}</Title>
+					<Review>
+						{review}
+						<img className="star" src={star} />
+					</Review>
+				</div>
+				<Description>{getDescription(description)}</Description>
+				<Tag type="button" toLink={to}>
+					{['Saiba mais']}
+				</Tag>
+			</SecondContainer>
+		</Card>
+	);
+};
 
 export default Restaurant;
