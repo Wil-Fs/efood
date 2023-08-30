@@ -1,17 +1,15 @@
 import Banner from '../../components/Banner';
 import HeroInfos from '../../components/HeroInfos';
 
-import iconClose from '../../assets/images/close.png';
-
+import { Overlay } from './styles';
 import FoodList from '../../components/FoodList';
 import Footer from '../../components/Footer';
-import { ModalContainer, ModalContent, OverLay } from './styles';
-import Tag from '../../components/Tag';
+
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { Restaurante } from '../Home';
 
-type GalleryState = {
+export type GalleryState = {
 	isVisible: boolean;
 };
 
@@ -38,7 +36,7 @@ const RestaurantInfo = () => {
 			: setModal({ isVisible: false });
 
 	return (
-		<OverLay>
+		<Overlay>
 			<HeroInfos toLinkHome="/" toLinkCar="carrinho" />
 			{restaurantInfo.map((rest) => (
 				<Banner
@@ -51,41 +49,7 @@ const RestaurantInfo = () => {
 
 			<FoodList onClick={() => openOrCloseModal()} />
 			<Footer />
-			<ModalContainer
-				onClick={() => openOrCloseModal()}
-				className={!modal.isVisible ? '' : 'visible'}
-			>
-				<div className="modal Container">
-					{restaurantInfo.map(({ cardapio }, index) => (
-						<ModalContent key={cardapio[index].id}>
-							<img
-								src={cardapio[index].foto}
-								alt={cardapio[index].nome}
-							/>
-							<img
-								onClick={() => openOrCloseModal()}
-								className="btnClose"
-								src={iconClose}
-								alt=""
-							/>
-							<div className="textContainer">
-								<h3>{cardapio[index].nome}</h3>
-								<p>
-									{cardapio[index].descricao}
-									<br />
-									<br />
-									<span>Serve: {cardapio[index].porcao}</span>
-								</p>
-								<Tag type="button">
-									Adicionar ao carrinho - R${' '}
-									{`${cardapio[index].preco}`}
-								</Tag>
-							</div>
-						</ModalContent>
-					))}
-				</div>
-			</ModalContainer>
-		</OverLay>
+		</Overlay>
 	);
 };
 
