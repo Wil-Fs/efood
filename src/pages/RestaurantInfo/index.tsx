@@ -37,20 +37,6 @@ const RestaurantInfo = () => {
 			  })
 			: setModal({ isVisible: false });
 
-	// const getCardapio = () => {
-	// 	const cardapio = [];
-
-	// 	for (let i = 0; i < restaurantInfo.length; i++) {
-	// 		for (let f = 0; f < restaurantInfo[i].cardapio.length; f++) {
-	// 			cardapio.push(restaurantInfo[i].cardapio[f]);
-	// 		}
-	// 	}
-
-	// 	return cardapio;
-	// };
-
-	//const food = getCardapio();
-
 	return (
 		<OverLay>
 			<HeroInfos toLinkHome="/" toLinkCar="carrinho" />

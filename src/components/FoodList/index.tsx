@@ -5,7 +5,7 @@ import { Restaurante } from '../../pages/Home';
 import { useParams } from 'react-router-dom';
 
 type Props = {
-	onClick: () => void;
+	onClick: (id: number) => number | void;
 };
 
 const FoodList = ({ onClick }: Props) => {
@@ -33,17 +33,34 @@ const FoodList = ({ onClick }: Props) => {
 
 	const food = getCardapio();
 
+	const getId = (id: number) => {
+		const cardapio = [];
+
+		for (let i = 0; i <= id - 1; i++) {
+			if (id === id) {
+				cardapio.push(food[id - 1].id);
+				cardapio.length > 1 && cardapio.shift();
+			}
+		}
+
+		return cardapio;
+	};
+
 	return (
 		<S.Background>
 			<div className="Container">
 				<S.FoodList>
 					{food.map((f) => (
 						<Food
+							id={f.id}
 							key={f.id}
 							title={f.nome}
 							image={f.foto}
 							description={f.descricao}
-							onClick={() => onClick()}
+							SelectedFood={() => {
+								onClick(f.id);
+								getId(f.id);
+							}}
 							toLink=""
 						/>
 					))}
