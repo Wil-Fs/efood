@@ -19,7 +19,7 @@ const Food = ({
 	SelectedFood,
 }: Props) => {
 	const getDescription = (description: string) =>
-		description.length > 132 && description.slice(0, 129) + '...';
+		description.length > 132 && description.slice(0, 120) + '...';
 
 	return (
 		<S.Card>
