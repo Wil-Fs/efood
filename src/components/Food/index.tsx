@@ -39,14 +39,4 @@ const Food = ({
 	);
 };
 
-const descricao =
-	'A La Dolce Vita Trattoria leva a autêntica cozinha italiana até você! Desfrute de massas caseiras, pizzas deliciosas e risotos incríveis, tudo no conforto do seu lar. Entrega rápida, pratos bem embalados e sabor inesquecível. Peça já!';
-
-console.log(descricao.length);
-
-const descricao2 =
-	'A clássica Marguerita: molho de tomate suculento, mussarela derretida, manjericão fresco e um toque de azeite. Sabor e simplicidade!';
-
-console.log(descricao2.length);
-
 export default Food;

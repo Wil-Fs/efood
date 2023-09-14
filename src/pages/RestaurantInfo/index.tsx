@@ -11,6 +11,12 @@ import { Restaurante } from '../Home';
 
 export type GalleryState = {
 	isVisible: boolean;
+	id: number;
+	nome: string;
+	foto: string;
+	descricao: string;
+	porcao: string;
+	preco: number;
 };
 
 const RestaurantInfo = () => {
@@ -18,22 +24,11 @@ const RestaurantInfo = () => {
 
 	const [restaurantInfo, setRestaurantInfo] = useState<Restaurante[]>([]);
 
-	const [modal, setModal] = useState<GalleryState>({
-		isVisible: false,
-	});
-
 	useEffect(() => {
 		fetch(`https://fake-api-tau.vercel.app/api/efood/restaurantes/${id}`)
 			.then((res) => res.json())
 			.then((res) => setRestaurantInfo([res]));
 	}, [id]);
-
-	const openOrCloseModal = () =>
-		!modal.isVisible
-			? setModal({
-					isVisible: true,
-			  })
-			: setModal({ isVisible: false });
 
 	return (
 		<Overlay>
@@ -46,8 +41,7 @@ const RestaurantInfo = () => {
 					title={rest.titulo}
 				/>
 			))}
-
-			<FoodList onClick={() => openOrCloseModal()} />
+			<FoodList />
 			<Footer />
 		</Overlay>
 	);
