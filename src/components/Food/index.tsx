@@ -7,17 +7,10 @@ type Props = {
 	title: string;
 	description: string;
 	toLink: string;
-	SelectedFood: (id: number) => number | void;
+	SelectedFood: () => void;
 };
 
-const Food = ({
-	id,
-	image,
-	title,
-	description,
-	toLink,
-	SelectedFood,
-}: Props) => {
+const Food = ({ image, title, description, toLink, SelectedFood }: Props) => {
 	const getDescription = (description: string) =>
 		description.length > 132 && description.slice(0, 120) + '...';
 
@@ -30,7 +23,7 @@ const Food = ({
 				<Tag
 					type="addCart"
 					toLink={toLink}
-					SelectedFood={() => SelectedFood(id)}
+					SelectedFood={() => SelectedFood()}
 				>
 					{['Adicionar ao carrinho']}
 				</Tag>

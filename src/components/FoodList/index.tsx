@@ -5,23 +5,23 @@ import iconClose from '../../assets/images/close.png';
 import { Restaurante } from '../../pages/Home';
 import { useParams } from 'react-router-dom';
 import { ModalContainer, ModalContent } from './styles';
-import Tag from '../Tag';
 import { GalleryState } from '../../pages/RestaurantInfo';
-import Cart from '../Cart';
-import { useDispatch, useSelector } from 'react-redux';
+
+import { useDispatch } from 'react-redux';
 import { addToCart } from '../../store/reducers/cart';
-import { RootReducer } from '../../store';
+
+export const formatPrice = (price = 0) =>
+	new Intl.NumberFormat('pt-BR', {
+		style: 'currency',
+		currency: 'BRL',
+	}).format(price);
 
 const FoodList = () => {
 	const { id } = useParams();
 
 	const [foods, setFoods] = useState<Restaurante[]>([]);
 
-	const { itens } = useSelector((state: RootReducer) => state.cart);
-
 	const dispatch = useDispatch();
-
-	console.log(itens);
 
 	const [modal, setModal] = useState<GalleryState>({
 		isVisible: false,
@@ -70,12 +70,6 @@ const FoodList = () => {
 		});
 	};
 
-	const formatPrice = (price = 0) =>
-		new Intl.NumberFormat('pt-BR', {
-			style: 'currency',
-			currency: 'BRL',
-		}).format(price);
-
 	return (
 		<S.Background>
 			<div className="Container">
@@ -104,6 +98,7 @@ const FoodList = () => {
 					)}
 
 					<ModalContainer
+						key={modal.id}
 						onClick={() => closeModal()}
 						className={!modal.isVisible ? '' : 'visible'}
 					>
@@ -124,30 +119,20 @@ const FoodList = () => {
 										<br />
 										<span>Serve: {modal.porcao}</span>
 									</p>
-									<Tag
+									<S.BtnCart
 										onClick={() =>
-											dispatch(addToCart(foods))
+											dispatch(addToCart(modal))
 										}
-										type="openCart"
-										toLink=""
 									>
 										Adicionar ao carrinho - R${' '}
 										{`${formatPrice(modal.preco)}`}
-									</Tag>
-									<button
-										onClick={() =>
-											dispatch(addToCart(foods))
-										}
-									>
-										Add
-									</button>
+									</S.BtnCart>
 								</div>
 							</ModalContent>
 						</div>
 					</ModalContainer>
 				</S.FoodList>
 			</div>
-			<Cart />
 		</S.Background>
 	);
 };

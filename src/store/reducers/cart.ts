@@ -1,9 +1,10 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { Restaurante } from '../../pages/Home';
+// import { Restaurante } from '../../pages/Home';
+import { GalleryState } from '../../pages/RestaurantInfo';
 
 export type CartState = {
 	isOpen: boolean;
-	itens: Restaurante[];
+	itens: GalleryState[];
 };
 
 const initialState: CartState = {
@@ -21,15 +22,25 @@ export const cartSlice = createSlice({
 		closeCart: (state) => {
 			state.isOpen = false;
 		},
-		addToCart: (state, action: PayloadAction<Restaurante[]>) => {
-			for (let i = 0; i < state.itens.length; i++) {
-				for (let f = 0; f < state.itens[i].cardapio.length; f++) {
-					state.itens[i].cardapio.push(action.payload[i].cardapio[f]);
-				}
+		addToCart: (state, action: PayloadAction<GalleryState>) => {
+			const existFood = state.itens.find(
+				(food) => food.id === action.payload.id
+			);
+
+			if (!existFood) {
+				state.itens.push(action.payload);
+			} else {
+				alert('Pedido já adicionado!');
 			}
+		},
+		removeToCart: (state, action: PayloadAction<number>) => {
+			state.itens = state.itens.filter(
+				(food) => food.id !== action.payload
+			);
 		},
 	},
 });
 
-export const { openCart, closeCart, addToCart } = cartSlice.actions;
+export const { openCart, closeCart, addToCart, removeToCart } =
+	cartSlice.actions;
 export default cartSlice.reducer;

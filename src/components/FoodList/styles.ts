@@ -1,6 +1,5 @@
 import { styled } from 'styled-components';
 import { Cores } from '../../styles';
-import { Button } from '../Tag/style';
 
 export const Background = styled.div`
 	background-color: ${Cores.bgColor};
@@ -75,11 +74,15 @@ export const ModalContent = styled.div`
 		font-size: 14px;
 		line-height: 22px;
 	}
+`;
 
-	${Button} {
-		color: ${Cores.fontColor};
-		background-color: ${Cores.bgColorFooter};
-		font-size: 14px;
-		font-weight: 700;
-	}
+export const BtnCart = styled.button`
+	color: ${Cores.fontColor};
+	background-color: ${Cores.bgColorFooter};
+	font-size: 14px;
+	font-weight: 700;
+	padding: 6px 4px;
+	background-color: ${Cores.bgColorFooter};
+	cursor: pointer;
+	border: none;
 `;

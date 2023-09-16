@@ -8,6 +8,7 @@ import Footer from '../../components/Footer';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { Restaurante } from '../Home';
+import Cart from '../../components/Cart';
 
 export type GalleryState = {
 	isVisible: boolean;
@@ -32,7 +33,7 @@ const RestaurantInfo = () => {
 
 	return (
 		<Overlay>
-			<HeroInfos toLinkHome="/" toLinkCar="carrinho" />
+			<HeroInfos toLinkHome="/" />
 			{restaurantInfo.map((rest) => (
 				<Banner
 					key={rest.id}
@@ -43,6 +44,7 @@ const RestaurantInfo = () => {
 			))}
 			<FoodList />
 			<Footer />
+			<Cart />
 		</Overlay>
 	);
 };

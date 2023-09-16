@@ -29,3 +29,12 @@ export const Title = styled(Link)`
 	padding: 80px 0 80px;
 	text-align: center;
 `;
+
+export const CartLength = styled.h4`
+	font-size: 18px;
+	font-weight: bold;
+	line-height: 21px;
+	color: ${Cores.fontColor};
+	padding: 80px 0 80px;
+	text-align: center;
+`;

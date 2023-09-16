@@ -15,6 +15,18 @@ export const GlobalStyle = createGlobalStyle`
 		text-decoration: none;
 		list-style: none;
 		font-family: 'Roboto', sans-serif;
+
+		&::-webkit-scrollbar {
+		width: 6px;
+	}
+	&::-webkit-scrollbar-thumb {
+		
+		background: ${Cores.bgColorFooter};
+	}
+	&::-webkit-scrollbar-track {
+		background: ${Cores.fontColor};
+	}
+
 	}
 
 	.Container {
