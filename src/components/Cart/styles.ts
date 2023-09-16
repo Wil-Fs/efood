@@ -13,7 +13,7 @@ export const OverLay = styled.div`
 `;
 
 export const Aside = styled.aside`
-	position: absolute;
+	position: fixed;
 
 	display: flex;
 	flex-direction: column;
