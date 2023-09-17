@@ -37,4 +37,5 @@ export const CartLength = styled.h4`
 	color: ${Cores.fontColor};
 	padding: 80px 0 80px;
 	text-align: center;
+	cursor: pointer;
 `;

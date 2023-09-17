@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Cores } from '../../styles';
+import { BreakPoint, Cores } from '../../styles';
 import { Button } from '../Tag/style';
 
 export const Card = styled.li`
@@ -26,6 +26,10 @@ export const DescriptionContainer = styled.div`
 	display: inline-flex;
 	flex-direction: column;
 	max-width: 304px;
+
+	@media (max-width: ${BreakPoint.desktop}) {
+		max-width: 275px;
+	}
 `;
 
 export const Image = styled.img`

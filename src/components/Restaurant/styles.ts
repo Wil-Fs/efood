@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import { Cores } from '../../styles';
+import { BreakPoint, Cores } from '../../styles';
 import { Button, Tags } from '../Tag/style';
 
 export const Card = styled.li`
@@ -32,6 +32,10 @@ export const SecondContainer = styled.div`
 	border: 1px solid ${Cores.fontColor};
 	border-top: none;
 	background-color: ${Cores.bgColorRestaurantList};
+
+	@media (max-width: ${BreakPoint.desktop}) {
+		height: 276px;
+	}
 
 	${Button} {
 		margin: 8px;

@@ -1,5 +1,5 @@
 import { styled } from 'styled-components';
-import { Cores } from '../../styles';
+import { BreakPoint, Cores } from '../../styles';
 
 export const Background = styled.div`
 	background-color: ${Cores.bgColor};
@@ -10,6 +10,10 @@ export const FoodList = styled.ul`
 	grid-template-columns: repeat(3, 1fr);
 	gap: 32px;
 	padding: 56px 0 120px;
+
+	@media (max-width: ${BreakPoint.desktop}) {
+		grid-template-columns: repeat(2, 1fr);
+	}
 `;
 
 export const ModalContainer = styled.div`
@@ -74,6 +78,19 @@ export const ModalContent = styled.div`
 		font-size: 14px;
 		line-height: 22px;
 	}
+
+	.serve {
+		display: block;
+		margin-bottom: 20px;
+	}
+
+	@media (max-width: ${BreakPoint.desktop}) {
+		font-size: 14px;
+
+		p {
+			font-size: 12px;
+		}
+	}
 `;
 
 export const BtnCart = styled.button`
@@ -85,4 +102,8 @@ export const BtnCart = styled.button`
 	background-color: ${Cores.bgColorFooter};
 	cursor: pointer;
 	border: none;
+
+	@media (max-width: ${BreakPoint.desktop}) {
+		margin-top: 10px;
+	}
 `;

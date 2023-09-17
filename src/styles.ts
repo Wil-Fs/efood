@@ -7,6 +7,11 @@ export const Cores = {
 	bgColorRestaurantList: '#FFFFFF',
 };
 
+export const BreakPoint = {
+	tablet: '768px',
+	desktop: '1024px',
+};
+
 export const GlobalStyle = createGlobalStyle`
 	*{
 		box-sizing: border-box;
@@ -33,6 +38,10 @@ export const GlobalStyle = createGlobalStyle`
 		max-width: 1024px;
 		width: 100%;
 		margin: 0 auto;
+
+		@media (max-width: ${BreakPoint.desktop}) {
+			width: 80%;
+		}
 	}
 
 	.overlayOpen{

@@ -5,10 +5,9 @@ import { Overlay } from './styles';
 import FoodList from '../../components/FoodList';
 import Footer from '../../components/Footer';
 
-import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { Restaurante } from '../Home';
 import Cart from '../../components/Cart';
+import { useGetRestaurantQuery } from '../../services/api';
 
 export type GalleryState = {
 	isVisible: boolean;
@@ -23,25 +22,23 @@ export type GalleryState = {
 const RestaurantInfo = () => {
 	const { id } = useParams();
 
-	const [restaurantInfo, setRestaurantInfo] = useState<Restaurante[]>([]);
+	const { data: restaurantInfo } = useGetRestaurantQuery(id!);
 
-	useEffect(() => {
-		fetch(`https://fake-api-tau.vercel.app/api/efood/restaurantes/${id}`)
-			.then((res) => res.json())
-			.then((res) => setRestaurantInfo([res]));
-	}, [id]);
+	if (!restaurantInfo) {
+		return <></>;
+	}
 
 	return (
 		<Overlay>
 			<HeroInfos toLinkHome="/" />
-			{restaurantInfo.map((rest) => (
-				<Banner
-					key={rest.id}
-					banner={rest.capa}
-					type={rest.tipo}
-					title={rest.titulo}
-				/>
-			))}
+
+			<Banner
+				key={restaurantInfo.id}
+				banner={restaurantInfo.capa}
+				type={restaurantInfo.tipo}
+				title={restaurantInfo.titulo}
+			/>
+
 			<FoodList />
 			<Footer />
 			<Cart />

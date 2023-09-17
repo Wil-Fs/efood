@@ -1,14 +1,15 @@
-import { useEffect, useState } from 'react';
 import Food from '../Food';
 import * as S from './styles';
 import iconClose from '../../assets/images/close.png';
-import { Restaurante } from '../../pages/Home';
+
 import { useParams } from 'react-router-dom';
 import { ModalContainer, ModalContent } from './styles';
 import { GalleryState } from '../../pages/RestaurantInfo';
 
 import { useDispatch } from 'react-redux';
 import { addToCart } from '../../store/reducers/cart';
+import { useGetRestaurantQuery } from '../../services/api';
+import { useState } from 'react';
 
 export const formatPrice = (price = 0) =>
 	new Intl.NumberFormat('pt-BR', {
@@ -19,7 +20,7 @@ export const formatPrice = (price = 0) =>
 const FoodList = () => {
 	const { id } = useParams();
 
-	const [foods, setFoods] = useState<Restaurante[]>([]);
+	const { data: foods } = useGetRestaurantQuery(id!);
 
 	const dispatch = useDispatch();
 
@@ -32,12 +33,6 @@ const FoodList = () => {
 		porcao: '',
 		preco: 0,
 	});
-
-	useEffect(() => {
-		fetch(`https://fake-api-tau.vercel.app/api/efood/restaurantes/${id}`)
-			.then((res) => res.json())
-			.then((res) => setFoods([res]));
-	}, [id]);
 
 	const openModal = (
 		id: number,
@@ -70,32 +65,34 @@ const FoodList = () => {
 		});
 	};
 
+	if (!foods) {
+		return <h2></h2>;
+	}
+
 	return (
 		<S.Background>
 			<div className="Container">
 				<S.FoodList>
-					{foods.map((f) =>
-						f.cardapio.map((f) => (
-							<Food
-								id={f.id}
-								key={f.id}
-								title={f.nome}
-								image={f.foto}
-								description={f.descricao}
-								SelectedFood={() => {
-									openModal(
-										f.id,
-										f.foto,
-										f.nome,
-										f.descricao,
-										f.porcao,
-										f.preco
-									);
-								}}
-								toLink=""
-							/>
-						))
-					)}
+					{foods.cardapio.map((f) => (
+						<Food
+							id={f.id}
+							key={f.id}
+							title={f.nome}
+							image={f.foto}
+							description={f.descricao}
+							SelectedFood={() => {
+								openModal(
+									f.id,
+									f.foto,
+									f.nome,
+									f.descricao,
+									f.porcao,
+									f.preco
+								);
+							}}
+							toLink=""
+						/>
+					))}
 
 					<ModalContainer
 						key={modal.id}
@@ -113,12 +110,10 @@ const FoodList = () => {
 								/>
 								<div className="textContainer">
 									<h3> {modal.nome}</h3>
-									<p>
-										{modal.descricao}
-										<br />
-										<br />
-										<span>Serve: {modal.porcao}</span>
-									</p>
+									<p>{modal.descricao}</p>
+									<span className="serve">
+										Serve: {modal.porcao}
+									</span>
 									<S.BtnCart
 										onClick={() =>
 											dispatch(addToCart(modal))
