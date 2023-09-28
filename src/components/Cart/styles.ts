@@ -3,6 +3,12 @@ import { Cores } from '../../styles';
 import { Button } from '../Tag/style';
 import scrap from '../../assets/images/lixeira.png';
 
+type InputGroupProps = {
+	maxWidth?: string;
+	margin?: string;
+	display?: string;
+};
+
 export const OverLay = styled.div`
 	position: fixed;
 	background-color: rgba(0, 0, 0, 0.75);
@@ -14,7 +20,6 @@ export const OverLay = styled.div`
 
 export const Aside = styled.aside`
 	position: fixed;
-
 	display: flex;
 	flex-direction: column;
 	max-width: 360px;
@@ -23,7 +28,6 @@ export const Aside = styled.aside`
 	right: 0;
 	top: 0;
 	background-color: ${Cores.fontColor};
-	color: ${Cores.fontColor};
 	overflow-y: auto;
 	overflow-x: hidden;
 
@@ -50,6 +54,19 @@ export const Aside = styled.aside`
 	&::-webkit-scrollbar-track {
 		background: ${Cores.fontColor};
 	}
+
+	p {
+		color: ${Cores.bgColorFooter};
+		font-size: 16px;
+		font-weight: bold;
+		line-height: 22px;
+		text-align: center;
+		padding: 40px 0;
+	}
+`;
+
+export const Cart = styled.div`
+	color: ${Cores.fontColor};
 `;
 
 export const List = styled.ul`
@@ -103,4 +120,36 @@ export const ValueContainer = styled.div`
 	justify-content: space-between;
 	margin: 16px 8px;
 	color: ${Cores.bgColorFooter};
+`;
+
+export const Form = styled.form<InputGroupProps>`
+	color: ${Cores.bgColorFooter};
+
+	h3 {
+		line-height: 18.75px;
+		font-size: 16px;
+		font-weight: bold;
+		margin-left: 8px;
+	}
+
+	${Button} {
+		margin: 8px;
+	}
+`;
+
+export const InputGroup = styled.div<InputGroupProps>`
+	max-width: ${(props) => (props.maxWidth ? props.maxWidth : 'auto')};
+	margin: ${(props) => (props.margin ? props.margin : '8px')};
+	display: ${(props) => (props.display ? props.display : 'block')};
+	label {
+	}
+
+	input {
+		height: 32px;
+		background-color: ${Cores.bgColorFooter};
+		color: #000;
+		border: none;
+		width: 100%;
+		margin-top: 8px;
+	}
 `;

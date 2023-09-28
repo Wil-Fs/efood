@@ -6,7 +6,7 @@ import FoodList from '../../components/FoodList';
 import Footer from '../../components/Footer';
 
 import { useParams } from 'react-router-dom';
-import Cart from '../../components/Cart';
+import CartCheckout from '../../components/Cart';
 import { useGetRestaurantQuery } from '../../services/api';
 
 export type GalleryState = {
@@ -41,7 +41,7 @@ const RestaurantInfo = () => {
 
 			<FoodList />
 			<Footer />
-			<Cart />
+			<CartCheckout />
 		</Overlay>
 	);
 };
