@@ -6,7 +6,7 @@ import FoodList from '../../components/FoodList';
 import Footer from '../../components/Footer';
 
 import { useParams } from 'react-router-dom';
-import CartCheckout from '../../components/Cart';
+import CartCheckout from '../../components/CartCheckout';
 import { useGetRestaurantQuery } from '../../services/api';
 
 export type GalleryState = {

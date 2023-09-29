@@ -130,6 +130,7 @@ export const Form = styled.form<InputGroupProps>`
 		font-size: 16px;
 		font-weight: bold;
 		margin-left: 8px;
+		margin-top: 32px;
 	}
 
 	${Button} {

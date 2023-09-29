@@ -8,10 +8,10 @@ export type Props = {
 	onClick?: () => void | unknown;
 };
 
-const Tag = ({ children, type, toLink, SelectedFood }: Props) => {
+const Tag = ({ children, type, toLink, SelectedFood, onClick }: Props) => {
 	if (type === 'button') {
 		return (
-			<Button type="button" to={`${toLink}`}>
+			<Button type="button" to={`${toLink}`} onClick={onClick}>
 				{children}
 			</Button>
 		);
