@@ -16,6 +16,8 @@ import { formatPrice } from '../FoodList';
 import { useEffect, useState } from 'react';
 import { Button } from '../Tag/style';
 
+import { useFormik } from 'formik';
+
 type Checkout = {
 	cartHasItem: boolean;
 	deliveryIsOpen: boolean;
@@ -23,6 +25,25 @@ type Checkout = {
 };
 
 const CartCheckout = () => {
+	const formik = useFormik({
+		initialValues: {
+			receiver: '',
+			complementAddress: '',
+			numberAddress: '',
+			descriptionAddress: '',
+			city: '',
+			zipCode: '',
+			cardOwner: '',
+			cardNumber: '',
+			cardCode: '',
+			expiresMonth: '',
+			expiresYear: '',
+		},
+		onSubmit: (values) => {
+			console.log(values);
+		},
+	});
+
 	const { isOpen, itens } = useSelector((state: RootReducer) => state.cart);
 	const dispatch = useDispatch();
 
@@ -88,120 +109,138 @@ const CartCheckout = () => {
 					!checkout.deliveryIsOpen &&
 					!checkout.payment && (
 						<Cart>
-							{itens.length > 0 && (
-								<>
-									<div>
-										<List>
-											{itens.map((item) => (
-												<Item key={item.id}>
-													<div>
-														<img
-															className="food"
-															src={item.foto}
-															alt={item.nome}
-														/>
-													</div>
-													<div className="text">
-														<h4>{item.nome}</h4>
-														<span>
-															{formatPrice(
-																item.preco
-															)}
-														</span>
-													</div>
-													<button
-														onClick={() =>
-															dispatch(
-																removeToCart(
-																	item.id
-																)
-															)
-														}
-														className={'scrap'}
+							<>
+								<div>
+									<List>
+										{itens.map((item) => (
+											<Item key={item.id}>
+												<div>
+													<img
+														className="food"
+														src={item.foto}
+														alt={item.nome}
 													/>
-												</Item>
-											))}
-										</List>
-									</div>
-									<ValueContainer>
-										<h4>Valor Total</h4>
-										<span>
-											{formatPrice(getFullPrice())}
-										</span>
-									</ValueContainer>
-									<Tag
-										type="button"
-										toLink=""
-										onClick={() =>
-											changeCheckOut(true, true, false)
-										}
-									>
-										{['Continuar com a entrega']}
-									</Tag>
-								</>
-							)}{' '}
+												</div>
+												<div className="text">
+													<h4>{item.nome}</h4>
+													<span>
+														{formatPrice(
+															item.preco
+														)}
+													</span>
+												</div>
+												<button
+													onClick={() =>
+														dispatch(
+															removeToCart(
+																item.id
+															)
+														)
+													}
+													className={'scrap'}
+												/>
+											</Item>
+										))}
+									</List>
+								</div>
+								<ValueContainer>
+									<h4>Valor Total</h4>
+									<span>{formatPrice(getFullPrice())}</span>
+								</ValueContainer>
+								<Tag
+									type="button"
+									toLink=""
+									onClick={() =>
+										changeCheckOut(true, true, false)
+									}
+								>
+									{['Continuar com a entrega']}
+								</Tag>
+							</>
 						</Cart>
 					)}
 				{checkout.cartHasItem &&
 					checkout.deliveryIsOpen &&
 					!checkout.payment && (
-						<Form>
+						<Form onSubmit={formik.handleSubmit}>
 							<h3>Entrega</h3>
 							<InputGroup>
-								<label htmlFor="destinatarioNome">
+								<label htmlFor="receiver">
 									Quem irá receber?
 								</label>
 								<input
 									type="text"
-									name="destinatarioNome"
-									id="destinatarioNome"
+									name="receiver"
+									id="receiver"
+									onChange={formik.handleChange}
+									onBlur={formik.handleBlur}
+									value={formik.values.receiver}
 								/>
 							</InputGroup>
 							<InputGroup>
-								<label htmlFor="adress">Endereço</label>
-								<input type="text" name="adress" id="adress" />
-							</InputGroup>
-							<InputGroup>
-								<label htmlFor="destinatarioNome">Cidade</label>
+								<label htmlFor="descriptionAddress">
+									Endereço
+								</label>
 								<input
 									type="text"
-									name="destinatarioNome"
-									id="destinatarioNome"
+									name="descriptionAddress"
+									id="descriptionAddress"
+									onChange={formik.handleChange}
+									onBlur={formik.handleBlur}
+									value={formik.values.descriptionAddress}
+								/>
+							</InputGroup>
+							<InputGroup>
+								<label htmlFor="city">Cidade</label>
+								<input
+									type="text"
+									name="city"
+									id="city"
+									onChange={formik.handleChange}
+									onBlur={formik.handleBlur}
+									value={formik.values.city}
 								/>
 							</InputGroup>
 							<InputGroup display="flex">
 								<InputGroup margin="0" maxWidth="155px">
-									<label htmlFor="destinatarioNome">
-										CEP
-									</label>
+									<label htmlFor="zipCode">CEP</label>
 									<input
 										type="text"
-										name="destinatarioNome"
-										id="destinatarioNome"
+										name="zipCode"
+										id="zipCode"
+										onChange={formik.handleChange}
+										onBlur={formik.handleBlur}
+										value={formik.values.zipCode}
 									/>
 								</InputGroup>
 								<InputGroup
 									margin="0 0 0 34px"
 									maxWidth="155px"
 								>
-									<label htmlFor="destinatarioNome">
+									<label htmlFor="numberAddress">
 										Número
 									</label>
 									<input
 										type="text"
-										name="destinatarioNome"
-										id="destinatarioNome"
+										name="numberAddress"
+										id="numberAddress"
+										onChange={formik.handleChange}
+										onBlur={formik.handleBlur}
+										value={formik.values.numberAddress}
 									/>
 								</InputGroup>
 							</InputGroup>
 							<InputGroup margin="8px 8px 24px 8px">
-								<label htmlFor="destinatarioNome">
+								<label htmlFor="complementAddress">
 									Complemento (opcional)
 								</label>
 								<input
 									type="text"
-									name="destinatarioNome"
-									id="destinatarioNome"
+									name="complementAddress"
+									id="complementAddress"
+									onChange={formik.handleChange}
+									onBlur={formik.handleBlur}
+									value={formik.values.complementAddress}
 								/>
 							</InputGroup>
 							<Button
@@ -224,7 +263,7 @@ const CartCheckout = () => {
 					checkout.cartHasItem &&
 					checkout.deliveryIsOpen && (
 						<>
-							<Form>
+							<Form onSubmit={formik.handleSubmit}>
 								<h3>
 									Pagamento - Valor a pagar{' '}
 									{formatPrice(getFullPrice())}
@@ -237,6 +276,9 @@ const CartCheckout = () => {
 										type="text"
 										id="cardOwner"
 										name="cardOwner"
+										onChange={formik.handleChange}
+										onBlur={formik.handleBlur}
+										value={formik.values.cardOwner}
 									/>
 								</InputGroup>
 								<InputGroup display="flex">
@@ -251,6 +293,9 @@ const CartCheckout = () => {
 											type="text"
 											id="cardNumber"
 											name="cardNumber"
+											onChange={formik.handleChange}
+											onBlur={formik.handleBlur}
+											value={formik.values.cardNumber}
 										/>
 									</InputGroup>
 									<InputGroup maxWidth="87px" margin="0">
@@ -259,6 +304,9 @@ const CartCheckout = () => {
 											type="text"
 											id="cardCode"
 											name="cardCode"
+											onChange={formik.handleChange}
+											onBlur={formik.handleBlur}
+											value={formik.values.cardCode}
 										/>
 									</InputGroup>
 								</InputGroup>
@@ -277,6 +325,9 @@ const CartCheckout = () => {
 											type="text"
 											id="expiresMonth"
 											name="expiresMonth"
+											onChange={formik.handleChange}
+											onBlur={formik.handleBlur}
+											value={formik.values.expiresMonth}
 										/>
 									</InputGroup>
 									<InputGroup maxWidth="155px" margin="0">
@@ -287,14 +338,19 @@ const CartCheckout = () => {
 											type="text"
 											id="expiresYear"
 											name="expiresYear"
+											onChange={formik.handleChange}
+											onBlur={formik.handleBlur}
+											value={formik.values.expiresYear}
 										/>
 									</InputGroup>
 								</InputGroup>
 								<Button
+									type="submit"
 									to=""
-									onClick={() =>
-										changeCheckOut(true, true, true)
-									}
+									onClick={() => {
+										changeCheckOut(true, true, true);
+										formik.handleSubmit();
+									}}
 								>
 									Finalizar pagamento
 								</Button>

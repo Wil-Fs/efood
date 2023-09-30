@@ -152,5 +152,6 @@ export const InputGroup = styled.div<InputGroupProps>`
 		border: none;
 		width: 100%;
 		margin-top: 8px;
+		padding: 8px;
 	}
 `;
