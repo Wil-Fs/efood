@@ -38,9 +38,12 @@ export const cartSlice = createSlice({
 				(food) => food.id !== action.payload
 			);
 		},
+		cleanCart: (state) => {
+			state.itens = [];
+		},
 	},
 });
 
-export const { openCart, closeCart, addToCart, removeToCart } =
+export const { openCart, closeCart, addToCart, removeToCart, cleanCart } =
 	cartSlice.actions;
 export default cartSlice.reducer;

@@ -142,8 +142,6 @@ export const InputGroup = styled.div<InputGroupProps>`
 	max-width: ${(props) => (props.maxWidth ? props.maxWidth : 'auto')};
 	margin: ${(props) => (props.margin ? props.margin : '8px')};
 	display: ${(props) => (props.display ? props.display : 'block')};
-	label {
-	}
 
 	input {
 		height: 32px;
@@ -153,5 +151,32 @@ export const InputGroup = styled.div<InputGroupProps>`
 		width: 100%;
 		margin-top: 8px;
 		padding: 8px;
+
+		&.error {
+			border: 1px solid red;
+			background-color: rgba(255, 0, 0, 0.25);
+		}
+	}
+`;
+
+export const PaymentSuccess = styled.div`
+	h3 {
+		line-height: 18.75px;
+		font-size: 16px;
+		font-weight: bold;
+		margin-left: 8px;
+		margin-top: 32px;
+		color: ${Cores.bgColorFooter};
+		margin-bottom: 16px;
+	}
+
+	.textOrder {
+		color: ${Cores.bgColorFooter};
+		font-size: 14px;
+		font-weight: 400;
+		line-height: 22px;
+		padding: 0 8px;
+		margin-bottom: 16px;
+		text-align: start;
 	}
 `;
