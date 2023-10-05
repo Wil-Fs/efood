@@ -7,12 +7,28 @@ export const Background = styled.div`
 
 export const FoodList = styled.ul`
 	display: grid;
-	grid-template-columns: repeat(3, 1fr);
-	gap: 32px;
-	padding: 56px 0 120px;
 
-	@media (max-width: ${BreakPoint.desktop}) {
+	@media (max-width: 767px) {
+		grid-template-columns: 1fr;
+		gap: 0;
+		row-gap: 32px;
+		margin: 0 auto;
+		width: auto;
+		max-width: 320px;
+		padding: 56px 0 120px;
+	}
+
+	@media (min-width: ${BreakPoint.tablet}) {
 		grid-template-columns: repeat(2, 1fr);
+		gap: 32px;
+		width: 100%;
+		padding: 56px 0 120px;
+	}
+
+	@media (min-width: ${BreakPoint.desktop}) {
+		gap: 32px;
+		padding: 56px 0 120px;
+		grid-template-columns: repeat(3, 1fr);
 	}
 `;
 
@@ -36,6 +52,10 @@ export const ModalContainer = styled.div`
 		position: fixed;
 		z-index: 2;
 		top: 25%;
+
+		@media (max-width: ${BreakPoint.tablet}) {
+			top: 10%;
+		}
 	}
 `;
 
@@ -70,6 +90,10 @@ export const ModalContent = styled.div`
 	h3 {
 		margin-bottom: 16px;
 		padding-top: 0;
+
+		@media (max-width: ${BreakPoint.tablet}) {
+			margin-left: 8px;
+		}
 	}
 
 	p {
@@ -77,18 +101,44 @@ export const ModalContent = styled.div`
 		font-weight: 400;
 		font-size: 14px;
 		line-height: 22px;
+
+		@media (max-width: ${BreakPoint.tablet}) {
+			margin-left: 8px;
+		}
 	}
 
 	.serve {
 		display: block;
 		margin-bottom: 20px;
+
+		@media (max-width: ${BreakPoint.tablet}) {
+			margin-left: 8px;
+		}
 	}
 
-	@media (max-width: ${BreakPoint.desktop}) {
-		font-size: 14px;
+	@media (max-width: ${BreakPoint.tablet}) {
+		display: block;
+		height: auto;
+		img {
+			width: 100%;
+			margin: 0;
+		}
+	}
 
+	@media (min-width: ${BreakPoint.tablet}) {
+		font-size: 14px;
+		height: auto;
 		p {
 			font-size: 12px;
+		}
+
+		display: flex;
+
+		> img {
+			height: 280px;
+			width: 280px;
+			object-fit: cover;
+			margin: 32px 24px 32px 32px;
 		}
 	}
 `;
@@ -102,6 +152,10 @@ export const BtnCart = styled.button`
 	background-color: ${Cores.bgColorFooter};
 	cursor: pointer;
 	border: none;
+
+	@media (max-width: ${BreakPoint.tablet}) {
+		margin: 8px;
+	}
 
 	@media (max-width: ${BreakPoint.desktop}) {
 		margin-top: 10px;

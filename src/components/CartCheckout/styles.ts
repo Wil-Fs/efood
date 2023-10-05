@@ -1,5 +1,5 @@
 import { styled } from 'styled-components';
-import { Cores } from '../../styles';
+import { BreakPoint, Cores } from '../../styles';
 import { Button } from '../Tag/style';
 import scrap from '../../assets/images/lixeira.png';
 
@@ -30,6 +30,10 @@ export const Aside = styled.aside`
 	background-color: ${Cores.fontColor};
 	overflow-y: auto;
 	overflow-x: hidden;
+
+	@media (max-width: ${BreakPoint.tablet}) {
+		width: 80%;
+	}
 
 	${Button} {
 		display: flex;
@@ -83,6 +87,10 @@ export const Item = styled.li`
 	background-color: ${Cores.bgColorFooter};
 
 	position: relative;
+
+	@media (max-width: ${BreakPoint.tablet}) {
+		width: 95%;
+	}
 
 	.food {
 		width: 80px;

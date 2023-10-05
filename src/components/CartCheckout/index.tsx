@@ -19,6 +19,7 @@ import { Button } from '../Tag/style';
 import * as Yup from 'yup';
 import { useFormik } from 'formik';
 import { usePurchaseMutation } from '../../services/api';
+import Spinner from '../Spinner';
 
 type Checkout = {
 	cartHasItem: boolean;
@@ -27,7 +28,6 @@ type Checkout = {
 };
 
 const CartCheckout = () => {
-	// eslint-disable-next-line @typescript-eslint/no-unused-vars
 	const [purchase, { data: orderId, isSuccess, isLoading, reset }] =
 		usePurchaseMutation();
 
@@ -156,6 +156,7 @@ const CartCheckout = () => {
 		<div className={!isOpen ? 'overlayOpen' : ''}>
 			<OverLay onClick={() => dispatch(closeCart())} />
 			<Aside>
+				{/* Carrinho Vazio */}
 				{!checkout.cartHasItem && !isSuccess && !isLoading && (
 					<>
 						<div>
@@ -166,10 +167,12 @@ const CartCheckout = () => {
 						</div>
 					</>
 				)}
+				{/* Carrinho com algum item */}
 				{checkout.cartHasItem &&
 					!checkout.deliveryIsOpen &&
 					!checkout.payment &&
-					!isSuccess && (
+					!isSuccess &&
+					!isLoading && (
 						<Cart>
 							<>
 								<div>
@@ -221,6 +224,7 @@ const CartCheckout = () => {
 							</>
 						</Cart>
 					)}
+				{/* Formulário para entrega */}
 				{checkout.cartHasItem &&
 					checkout.deliveryIsOpen &&
 					!checkout.payment && (
@@ -347,6 +351,7 @@ const CartCheckout = () => {
 							</Button>
 						</Form>
 					)}{' '}
+				{/* Formuário para pagamento */}
 				{checkout.payment &&
 					checkout.cartHasItem &&
 					checkout.deliveryIsOpen && (
@@ -465,7 +470,9 @@ const CartCheckout = () => {
 										form.handleSubmit();
 									}}
 								>
-									Finalizar pagamento
+									{isLoading
+										? 'Finalizando a compra...'
+										: 'Finalizar compra'}
 								</Button>
 								<Button
 									to=""
@@ -478,6 +485,8 @@ const CartCheckout = () => {
 							</Form>
 						</>
 					)}
+				{isLoading && <Spinner />}
+				{/* Confirmação do pedido */}
 				{isSuccess && orderId && checkout.cartHasItem && (
 					<PaymentSuccess>
 						<h3>Pedido realizado - {orderId.orderId}</h3>

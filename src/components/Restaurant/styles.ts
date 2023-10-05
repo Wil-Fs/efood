@@ -8,6 +8,7 @@ export const Card = styled.li`
 	max-width: 472px;
 	position: relative;
 	color: ${Cores.fontColor};
+	height: 100%;
 
 	.textContainer {
 		display: flex;
@@ -34,7 +35,7 @@ export const SecondContainer = styled.div`
 	background-color: ${Cores.bgColorRestaurantList};
 
 	@media (max-width: ${BreakPoint.desktop}) {
-		height: 276px;
+		height: 60%;
 	}
 
 	${Button} {

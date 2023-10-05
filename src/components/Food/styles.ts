@@ -18,6 +18,11 @@ export const Card = styled.li`
 		background-color: ${Cores.bgColorFooter};
 		width: 100%;
 		margin: 8px 0;
+
+		@media (max-width: ${BreakPoint.tablet}) {
+			width: 94%;
+			margin: 8px 8px;
+		}
 	}
 `;
 
@@ -44,6 +49,11 @@ export const Title = styled.h4`
 	line-height: 18px;
 	display: block;
 	padding-bottom: 8px;
+
+	@media (max-width: ${BreakPoint.tablet}) {
+		width: 96%;
+		margin: 0 8px;
+	}
 `;
 
 export const Description = styled.p`
@@ -51,4 +61,9 @@ export const Description = styled.p`
 	line-height: 22px;
 	font-weight: 400;
 	width: 100%;
+
+	@media (max-width: ${BreakPoint.tablet}) {
+		width: 96%;
+		margin: 0 8px;
+	}
 `;

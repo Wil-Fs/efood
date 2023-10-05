@@ -10,6 +10,7 @@ import { useDispatch } from 'react-redux';
 import { addToCart } from '../../store/reducers/cart';
 import { useGetRestaurantQuery } from '../../services/api';
 import { useState } from 'react';
+import Spinner from '../Spinner';
 
 export const formatPrice = (price = 0) =>
 	new Intl.NumberFormat('pt-BR', {
@@ -66,7 +67,7 @@ const FoodList = () => {
 	};
 
 	if (!foods) {
-		return <h2></h2>;
+		return <Spinner />;
 	}
 
 	return (
@@ -119,7 +120,7 @@ const FoodList = () => {
 											dispatch(addToCart(modal))
 										}
 									>
-										Adicionar ao carrinho - R${' '}
+										Adicionar ao carrinho -{' '}
 										{`${formatPrice(modal.preco)}`}
 									</S.BtnCart>
 								</div>

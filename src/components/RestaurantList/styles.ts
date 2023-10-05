@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Cores } from '../../styles';
+import { BreakPoint, Cores } from '../../styles';
 
 export const RestaurantContainer = styled.ul`
 	display: grid;
@@ -9,4 +9,8 @@ export const RestaurantContainer = styled.ul`
 	padding-bottom: 120px;
 	background-color: ${Cores.bgColor};
 	padding-bottom: 120px;
+
+	@media (max-width: ${BreakPoint.tablet}) {
+		grid-template-columns: 1fr;
+	}
 `;

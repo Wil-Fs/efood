@@ -8,6 +8,7 @@ import Footer from '../../components/Footer';
 import { useParams } from 'react-router-dom';
 import CartCheckout from '../../components/CartCheckout';
 import { useGetRestaurantQuery } from '../../services/api';
+import Spinner from '../../components/Spinner';
 
 export type GalleryState = {
 	isVisible: boolean;
@@ -25,7 +26,7 @@ const RestaurantInfo = () => {
 	const { data: restaurantInfo } = useGetRestaurantQuery(id!);
 
 	if (!restaurantInfo) {
-		return <></>;
+		return <Spinner />;
 	}
 
 	return (

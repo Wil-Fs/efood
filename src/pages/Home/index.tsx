@@ -1,6 +1,7 @@
 import RestaurantList from '../../components/RestaurantList';
 import { Background } from './styles';
 import { useGetRestaurantsQuery } from '../../services/api';
+import Spinner from '../../components/Spinner';
 
 export type Restaurante = {
 	id: number;
@@ -25,7 +26,7 @@ export type Restaurante = {
 const Home = () => {
 	const { data: restaurants } = useGetRestaurantsQuery();
 
-	if (!restaurants) return <h2></h2>;
+	if (!restaurants) return <Spinner />;
 
 	return (
 		<Background>

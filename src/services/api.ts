@@ -46,7 +46,7 @@ export const api = createApi({
 		getRestaurant: builder.query<Restaurante, string>({
 			query: (id) => `restaurantes/${id}`,
 		}),
-		// eslint-disable-next-line @typescript-eslint/no-explicit-any
+
 		purchase: builder.mutation<PurchaseResponse, PurchasePayload>({
 			query: (body) => ({
 				url: 'checkout',

@@ -42,6 +42,11 @@ export const GlobalStyle = createGlobalStyle`
 		@media (max-width: ${BreakPoint.desktop}) {
 			width: 80%;
 		}
+
+		@media (max-width: ${BreakPoint.tablet}) {
+			margin: 0 auto;
+			width: 83%;
+		}
 	}
 
 	.overlayOpen{
