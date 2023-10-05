@@ -20,6 +20,7 @@ import * as Yup from 'yup';
 import { useFormik } from 'formik';
 import { usePurchaseMutation } from '../../services/api';
 import Spinner from '../Spinner';
+import InputMask from 'react-input-mask';
 
 type Checkout = {
 	cartHasItem: boolean;
@@ -54,8 +55,8 @@ const CartCheckout = () => {
 				'Informe o nome da cidade onde será feita a entrega'
 			),
 			zipCode: Yup.string()
-				.min(8, 'Informe o seu cep')
-				.max(8, 'Tamanho do cep inválido')
+				.min(9, 'Informe o seu cep')
+				.max(9, 'Tamanho do cep inválido')
 				.required('O campo é obrigátorio'),
 			numberAddress: Yup.string().required('O campo é obrigátorio'),
 			cardOwner: Yup.string()
@@ -281,7 +282,8 @@ const CartCheckout = () => {
 							<InputGroup display="flex">
 								<InputGroup margin="0" maxWidth="155px">
 									<label htmlFor="zipCode">CEP</label>
-									<input
+									<InputMask
+										mask={'99999-999'}
 										type="text"
 										name="zipCode"
 										id="zipCode"
@@ -387,7 +389,8 @@ const CartCheckout = () => {
 										<label htmlFor="cardNumber">
 											Número do cartão
 										</label>
-										<input
+										<InputMask
+											mask={'9999 9999 9999 9999'}
 											type="text"
 											id="cardNumber"
 											name="cardNumber"
@@ -403,7 +406,8 @@ const CartCheckout = () => {
 									</InputGroup>
 									<InputGroup maxWidth="87px" margin="0">
 										<label htmlFor="cardCode">CVV</label>
-										<input
+										<InputMask
+											mask={'999'}
 											type="text"
 											id="cardCode"
 											name="cardCode"
@@ -429,7 +433,8 @@ const CartCheckout = () => {
 										<label htmlFor="expiresMonth">
 											Mês de vencimento
 										</label>
-										<input
+										<InputMask
+											mask={'99'}
 											type="text"
 											id="expiresMonth"
 											name="expiresMonth"
@@ -447,7 +452,8 @@ const CartCheckout = () => {
 										<label htmlFor="expiresYear">
 											Ano de vencimento
 										</label>
-										<input
+										<InputMask
+											mask={'9999'}
 											type="text"
 											id="expiresYear"
 											name="expiresYear"
