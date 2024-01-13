@@ -2,7 +2,7 @@ import { createGlobalStyle } from 'styled-components';
 
 export const Cores = {
 	fontColor: '#E66767',
-	bgColor: '#FFF8F2',
+	bgColor: '#FFF8EF',
 	bgColorFooter: '#FFEBD9',
 	bgColorRestaurantList: '#FFFFFF',
 };
