@@ -1,11 +1,18 @@
 import { createGlobalStyle } from 'styled-components';
 
 export const Cores = {
-	fontColor: '#E66767',
-	bgColor: '#FFF8EF',
-	bgColorFooter: '#FFEBD9',
-	bgColorRestaurantList: '#FFFFFF',
+	fontColor: '#fff',
+	bgColor: '#000',
+	bgColorFooter: '#777',
+	bgColorRestaurantList: '#aaa',
 };
+
+// export const Cores = {
+// 	fontColor: '#E66767',
+// 	bgColor: '#FFF8EF',
+// 	bgColorFooter: '#FFEBD9',
+// 	bgColorRestaurantList: '#FFFFFF',
+// };
 
 export const BreakPoint = {
 	tablet: '768px',
